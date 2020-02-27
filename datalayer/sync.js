@@ -26,11 +26,7 @@ const sync = async () => {
     thing_id UUID NOT NULL REFERENCES things(thing_id)
   );`;
 
-  console.log(createThings)
-
   await client.query(sql);
-  /*
-  These are undefined? Why?
 
   await createThings('ice axe');
   await createThings('crampons');
@@ -38,7 +34,7 @@ const sync = async () => {
   await createUsers('helen');
   await createUserThings('pamela', 'ice axe');
   await createUserThings('helen', 'crampons');
-*/
+
 }
 
 module.exports = { sync };

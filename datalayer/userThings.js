@@ -3,8 +3,8 @@ const { client } = require('./client');
 const createUserThings = async (userName, thingName) => {
   const sql = `
   INSERT INTO user_things (user_id, thing_id)
-  (SELECT user_id FROM users WHERE user_name = $1),
-    (SELECT thing_id FROM things WHERE thing_name = $2)
+  (SELECT id FROM users WHERE name = $1),
+    (SELECT id FROM things WHERE name = $2)
   RETURNING *`;
   return (await client.query(sql, [userName, thingName])).rows[0];
 }

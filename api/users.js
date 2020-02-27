@@ -4,8 +4,8 @@ const userRouter = express.Router();
 
 userRouter.post('/', async (req, res, next) => {
   try {
-    const { userName } = req.body;
-    const data = await createUsers(userName);
+    const { name } = req.body;
+    const data = await createUsers(name);
     res.status(201).send(data);
   } catch (error) {
     next(error)
@@ -25,8 +25,8 @@ userRouter.get('/', async (req, res, next) => {
 
 userRouter.delete('/', async (req, res, next) => {
   try {
-    const { userId } = req.body;
-    const data = await deleteUsers(userId);
+    const { id } = req.body;
+    const data = await deleteUsers(id);
     res.status(200).send(data);
   } catch (error) {
     next(error);
