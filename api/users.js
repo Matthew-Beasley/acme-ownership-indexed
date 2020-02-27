@@ -33,4 +33,6 @@ userRouter.delete('/', async (req, res, next) => {
   }
 });
 
-module.exports = { userRouter };
+module.exports = {
+  userRouter
+};
