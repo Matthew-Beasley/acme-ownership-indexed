@@ -23,11 +23,9 @@ thingRouter.get('/', async (req, res, next) => {
 });
 
 
-thingRouter.delete('/', async (req, res, next) => {
+thingRouter.delete('/:id', async (req, res, next) => {
   try {
-    console.log(req.body, ' thing delete body')
-    const { id } = req.body;
-    console.log(id, ' thing delete id')
+    const { id } = req.params;
     const data =  await deleteThings(id);
     res.status(200).send(data);
   } catch (error) {

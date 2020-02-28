@@ -19,6 +19,24 @@ app.get('/', (req, res, next) => {
   }
 });
 
+app.use((err, req, res, next) => {
+  console.log(err);
+})
+
+/*
+app.use((req, res, next) => {
+  next({
+    status: 404,
+    message: `Page not found for ${req.method} ${req.url}`
+  })
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).send({
+    message: err.message || JSON.stringify(err)
+  });
+});
+*/
 //sync(); //not seeding
 app.listen(PORT, () => console.log('Listening on PORT ', PORT))
 

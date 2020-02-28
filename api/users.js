@@ -23,9 +23,9 @@ userRouter.get('/', async (req, res, next) => {
 });
 
 
-userRouter.delete('/', async (req, res, next) => {
+userRouter.delete('/:id', async (req, res, next) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const data = await deleteUsers(id);
     res.status(200).send(data);
   } catch (error) {

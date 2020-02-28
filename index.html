@@ -200,7 +200,7 @@
 
 
         const destroyUserThing = async(userThingToDestroy)=> {
-          await axios.delete(`/api/user_things/${userThingToDestroy.id}`);
+          const ret = await axios.delete(`/api/user_things/${userThingToDestroy.user_things_id}`);
           setUserThings(userThings.filter( userThing => userThing.id !== userThingToDestroy.id));
           setError('');
         };
@@ -231,7 +231,6 @@
 
 
         const destroyThing = async(thingToDestroy)=> {
-          console.log(thingToDestroy)
           try {
             await axios.delete(`/api/things/${thingToDestroy.id}`);
             setThings(things.filter( thing => thing.id !== thingToDestroy.id));

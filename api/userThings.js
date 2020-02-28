@@ -4,8 +4,8 @@ const userThingsRouter = express.Router();
 
 userThingsRouter.post('/', async (req, res, next) => {
   try {
-    const { userId, thingId } = req.body;
-    const data = await createUserThings(userId, thingId);
+    const { thingId, userId } = req.body;
+    const data = await createUserThings(thingId, userId);
     res.status(201).send(data);
   } catch (error) {
     next(error);
@@ -23,10 +23,12 @@ userThingsRouter.get('/', async (req, res, next) => {
 });
 
 
-userThingsRouter.delete('/', async (req, res, next) => {
+userThingsRouter.delete('/:id', async (req, res, next) => {
   try {
-    const { userThingId } = req.body;
-    const data = await deleteUserThings(userThingId);
+    console.log(req.params, ' params in userthings delete api')
+    const { id } = req.params;
+    console.log(id, ' after destructure')
+    const data = await deleteUserThings(id);
     res.status(200).send(data);
   } catch (error) {
     next(error);

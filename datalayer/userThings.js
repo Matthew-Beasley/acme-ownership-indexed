@@ -1,12 +1,11 @@
 const { client } = require('./client');
 
-const createUserThings = async (userName, thingName) => {
+const createUserThings = async (thingId, userId) => {
   const sql = `
-  INSERT INTO user_things (user_id, thing_id)
-  (SELECT id FROM users WHERE name = $1),
-    (SELECT id FROM things WHERE name = $2)
+  INSERT INTO user_things ("thingId", "userId")
+  VALUES ($1, $2)
   RETURNING *`;
-  return (await client.query(sql, [userName, thingName])).rows[0];
+  return (await client.query(sql, [thingId, userId])).rows[0];
 }
 
 
@@ -18,9 +17,10 @@ const readUserThings = async () => {
 
 
 const deleteUserThings = async (userThingId) => {
+  console.log(userThingId, ' in userthings datalayer delete')
   const sql = `
   DELETE FROM user_things
-  WHERE user_thing_id = $1
+  WHERE user_things_id = $1
   RETURNING *`;
   return (await client.query(sql, [userThingId])).rows[0];
 }
